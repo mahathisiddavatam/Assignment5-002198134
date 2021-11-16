@@ -31,7 +31,9 @@ public class DeliveryManJPanel extends javax.swing.JPanel {
     DeliveryManDirectory deliverymanlist;
     EcoSystem system;
     public DeliveryManJPanel(DeliveryManDirectory deliverymanlist,EcoSystem system) {
-        this.deliverymanlist = deliverymanlist;
+        
+        //system.setDeliverymandirectory(deliverymanlist);
+        this.deliverymanlist = system.getDeliverymandirectory();
         this.system = system;
         initComponents();
         populateTable();
@@ -598,7 +600,7 @@ public class DeliveryManJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)tblView1.getModel();
         int selectedIndex = tblView1.getSelectedRow();
         String id= model.getValueAt(selectedIndex, 0).toString();
-        if(deliverymanlist.deleteDeliveryMan(id)){
+        if(deliverymanlist.deleteDeliveryMan(id) && system.getUserAccountDirectory().DeleteUserAccount(id)){
             JOptionPane.showMessageDialog(this, "Succesfully Deleted!");
             return;
 

@@ -4,7 +4,10 @@
  */
 package Business;
 
+import Business.Customer.CustomerDirectory;
+import Business.DeliveryMan.DeliveryManDirectory;
 import Business.Employee.EmployeeDirectory;
+import Business.Restaurant.RestaurantDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
@@ -20,6 +23,10 @@ public abstract class Organization {
     private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
+    private CustomerDirectory customerdirectory;
+    private RestaurantDirectory restaurantdirectory;
+    private DeliveryManDirectory deliverymandirectory;
+    
     private int organizationID;
     private static int counter=0;
     
@@ -43,6 +50,10 @@ public abstract class Organization {
         workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
+        customerdirectory = new CustomerDirectory();
+        deliverymandirectory = new DeliveryManDirectory();
+        restaurantdirectory = new RestaurantDirectory();
+        
         organizationID = counter;
         ++counter;
     }
@@ -55,6 +66,31 @@ public abstract class Organization {
         return userAccountDirectory;
     }
 
+    public CustomerDirectory getCustomerdirectory() {
+        return customerdirectory;
+    }
+
+    public RestaurantDirectory getRestaurantdirectory() {
+        return restaurantdirectory;
+    }
+
+    public DeliveryManDirectory getDeliverymandirectory() {
+        return deliverymandirectory;
+    }
+
+    public void setCustomerdirectory(CustomerDirectory customerdirectory) {
+        this.customerdirectory = customerdirectory;
+    }
+
+    public void setRestaurantdirectory(RestaurantDirectory restaurantdirectory) {
+        this.restaurantdirectory = restaurantdirectory;
+    }
+
+    public void setDeliverymandirectory(DeliveryManDirectory deliverymandirectory) {
+        this.deliverymandirectory = deliverymandirectory;
+    }
+    
+
     public int getOrganizationID() {
         return organizationID;
     }
@@ -62,6 +98,10 @@ public abstract class Organization {
     public EmployeeDirectory getEmployeeDirectory() {
         return employeeDirectory;
     }
+
+   
+    
+    
     
     public String getName() {
         return name;

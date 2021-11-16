@@ -62,4 +62,17 @@ public class UserAccountDirectory {
         }
         return null;
     }
+    
+    public boolean DeleteUserAccount(String username){
+        
+        for(UserAccount ua: userAccountList ){
+            if (ua.getUsername().equals(username)){
+                
+                userAccountList.remove(ua);
+                return true;
+            }
+            }
+        return false;
+        
+    }
 }

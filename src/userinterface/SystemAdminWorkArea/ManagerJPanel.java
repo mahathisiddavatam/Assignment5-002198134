@@ -31,7 +31,7 @@ public class ManagerJPanel extends javax.swing.JPanel {
     EcoSystem system;
     public ManagerJPanel(EmployeeDirectory employeelist, EcoSystem system ) {
         
-        this.employeelist = employeelist;
+        this.employeelist = system.getEmployeeDirectory();
         this.system = system;
         
         initComponents();
@@ -583,7 +583,7 @@ public class ManagerJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)tblView1.getModel();
         int selectedIndex = tblView1.getSelectedRow();
         String id= model.getValueAt(selectedIndex, 0).toString();
-        if(employeelist.deleteEmployee(id)){
+        if(employeelist.deleteEmployee(id) && system.getUserAccountDirectory().DeleteUserAccount(id)){
             JOptionPane.showMessageDialog(this, "Succesfully Deleted!");
             return;
 

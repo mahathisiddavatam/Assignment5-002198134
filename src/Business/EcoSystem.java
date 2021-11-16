@@ -20,16 +20,22 @@ import java.util.ArrayList;
 public class EcoSystem extends Organization{
     
     private static EcoSystem business;
-    private RestaurantDirectory restaurantDirectory;
-    private CustomerDirectory customerDirectory;
-    private DeliveryManDirectory deliveryManDirectory;
+    //private RestaurantDirectory restaurantDirectory;
+    //private CustomerDirectory customerDirectory;
+    //private DeliveryManDirectory deliveryManDirectory;
 
-    public EcoSystem(RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliveryManDirectory deliveryManDirectory) {
+    /*public EcoSystem(RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliveryManDirectory deliveryManDirectory) {
 
         this.restaurantDirectory = restaurantDirectory;
         this.customerDirectory = customerDirectory;
         this.deliveryManDirectory = deliveryManDirectory;
-    }
+    }*/
+
+    
+    
+    
+    
+   
     
             
     public static EcoSystem getInstance(){
@@ -46,7 +52,10 @@ public class EcoSystem extends Organization{
         return roleList;
     }
     private EcoSystem(){
+        
         super(null);
+        
+        
         //networkList =new ArrayList<Network>();
     }
 

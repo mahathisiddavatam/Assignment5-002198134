@@ -4,6 +4,7 @@
  */
 package Business.Employee;
 
+import Business.Restaurant.Restaurant;
 import java.util.Date;
 
 /**
@@ -16,6 +17,7 @@ public class Employee {
     private String id;
     private Date date;
     private String phno;
+    private Restaurant restaurant;
 
     public Date getDate() {
         return date;
@@ -56,6 +58,16 @@ public class Employee {
     public String toString() {
         return name;
     }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+    
+    
     
     
 }

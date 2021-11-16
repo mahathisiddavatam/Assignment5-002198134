@@ -31,9 +31,12 @@ public class CustomerJPanel extends javax.swing.JPanel {
     
     public CustomerJPanel(CustomerDirectory customerlist, EcoSystem system) {
         
-        this.customerlist=customerlist;
-        this.system = system;
+        
+        
         initComponents();
+        this.system = system;
+        //system.setCustomerdirectory(customerlist);
+        this.customerlist= system.getCustomerdirectory();
         populateTable();
         populateTable1();
     }
@@ -733,11 +736,12 @@ public class CustomerJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)tblView1.getModel();
         int selectedIndex = tblView1.getSelectedRow();
         String id= model.getValueAt(selectedIndex, 0).toString();
-        if(customerlist.deleteCustomer(id)){
+        if(customerlist.deleteCustomer(id) && system.getUserAccountDirectory().DeleteUserAccount(id)){
             JOptionPane.showMessageDialog(this, "Succesfully Deleted!");
             return;
-            
         }
+            
+        
         
         
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -795,6 +799,8 @@ public class CustomerJPanel extends javax.swing.JPanel {
         
        DefaultTableModel model = (DefaultTableModel) tblView.getModel();
        model.setRowCount(0);
+       
+       
         
        for(Customer customer: customerlist.getCustomerlist()){
             
@@ -808,14 +814,8 @@ public class CustomerJPanel extends javax.swing.JPanel {
             
         }
         
-            
-                
-            
-            
-            
-        
+      
     }
-
     private void populateTable1() {
         DefaultTableModel model = (DefaultTableModel) tblView1.getModel();
         model.setRowCount(0);
@@ -826,7 +826,10 @@ public class CustomerJPanel extends javax.swing.JPanel {
             row[0]= customer.getId();
             row[1]= customer.getDate();
             model.insertRow(0, row); //To change body of generated methods, choose Tools | Templates.
-    }
     
+        }
     }
 }
+    
+    
+

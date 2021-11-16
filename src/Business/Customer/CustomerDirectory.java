@@ -20,7 +20,7 @@ public class CustomerDirectory {
     
     public CustomerDirectory(){
         
-        this.customerlist = new ArrayList<Customer>();
+        this.customerlist = new ArrayList();
         
         
         

@@ -4,15 +4,20 @@
  */
 package userinterface;
 
+import Business.Customer.Customer;
 import Business.EcoSystem;
 import Business.DB4OUtil.DB4OUtil;
+import Business.DeliveryMan.DeliveryMan;
+import Business.Employee.Employee;
+import Business.Role.CustomerRole;
+import Business.Role.DeliverManRole;
 import Business.Role.Role;
 
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
  *
@@ -50,6 +55,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         loginJLabel = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
+        btnDeleteAll = new javax.swing.JButton();
         container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,10 +78,16 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2.setText("Password");
 
         btnLogout.setText("Logout");
-        btnLogout.setEnabled(false);
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogoutActionPerformed(evt);
+            }
+        });
+
+        btnDeleteAll.setText("Delete everything");
+        btnDeleteAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteAllActionPerformed(evt);
             }
         });
 
@@ -91,8 +103,10 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtUsernameMain, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnDeleteAll, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE))
                             .addGap(26, 26, 26)
                             .addComponent(loginJLabel)))
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -115,7 +129,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btnLogout)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loginJLabel)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addGap(64, 64, 64)
+                .addComponent(btnDeleteAll)
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(jPanel1);
@@ -130,6 +146,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // Get user name
+        
+        
         String username = txtUsernameMain.getText();
         String password = txtPassword.getText();
         
@@ -156,10 +174,10 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        btnLogout.setEnabled(false);
-        txtUsernameMain.setEnabled(true);
-        txtPassword.setEnabled(true);
-        btnLogin.setEnabled(true);
+        //btnLogout.setEnabled(true);
+        //txtUsernameMain.setEnabled(true);
+        //txtPassword.setEnabled(true);
+        //sbtnLogin.setEnabled(true);
 
         txtUsernameMain.setText("");
         txtPassword.setText("");
@@ -167,14 +185,26 @@ public class MainJFrame extends javax.swing.JFrame {
         container.removeAll();
         JPanel blankJP = new JPanel();
         container.add("blank", blankJP);
+        splitPane.setRightComponent(blankJP);
         CardLayout crdLyt = (CardLayout) container.getLayout();
         crdLyt.next(container);
+        
+        
+        
+       
+        
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void txtUsernameMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameMainActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameMainActionPerformed
+
+    private void btnDeleteAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAllActionPerformed
+        // TODO add your handling code here:
+        
+      
+    }//GEN-LAST:event_btnDeleteAllActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,8 +241,9 @@ public class MainJFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDeleteAll;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnLogout;
+    public javax.swing.JButton btnLogout;
     private javax.swing.JPanel container;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -62,6 +62,19 @@ public class DB4OUtil {
         conn.close();
     }
     
+    public synchronized void deleteSystem(EcoSystem system){
+        
+        ObjectContainer conn = createConnection();
+        ObjectSet result = conn.queryByExample(system.getInstance());
+        System found = (System) result.next();
+        conn.delete(found);
+        conn.commit();
+        conn.close();
+
+        
+        
+    }
+    
     public EcoSystem retrieveSystem(){
         
         ObjectContainer conn = createConnection();
