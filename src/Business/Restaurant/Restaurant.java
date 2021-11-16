@@ -14,7 +14,15 @@ public class Restaurant {
     String name;
     Menu menu;
     String address;
+    String manager;
 
+    public String getManager() {
+        return manager;
+    }
+
+    public void setManager(String manager) {
+        this.manager = manager;
+    }
     public String getName() {
         return name;
     }

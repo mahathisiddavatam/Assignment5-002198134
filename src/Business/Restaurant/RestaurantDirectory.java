@@ -27,6 +27,36 @@ public class RestaurantDirectory {
     public ArrayList<Restaurant> getRestaurantlist() {
         return restaurantlist;
     }
+    
+    public Restaurant RetrieveRestaurant(String name){
+        
+        for(Restaurant res: restaurantlist){
+            
+            if(name.equals(res.manager)){
+                
+                return res;
+                
+                
+            }
+        }
+        return null;
+    }
+    
+    public Restaurant AcquireRestaurant(String name){
+        
+        for(Restaurant res: restaurantlist){
+            
+            if(name.equals(res.name)){
+                
+                return res;
+                
+                
+            }
+        }
+        return null;
+        
+        
+    }
 
     public void setRestaurantlist(ArrayList<Restaurant> restaurantlist) {
         this.restaurantlist = restaurantlist;

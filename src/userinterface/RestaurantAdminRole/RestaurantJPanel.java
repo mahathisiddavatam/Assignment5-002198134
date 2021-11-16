@@ -8,6 +8,7 @@ package userinterface.RestaurantAdminRole;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.Restaurant.RestaurantDirectory;
+import javax.swing.JOptionPane;
 import userinterface.MainJFrame;
 
 /**
@@ -24,6 +25,12 @@ public class RestaurantJPanel extends javax.swing.JPanel {
      */
     public RestaurantJPanel(RestaurantDirectory restaurantlist,EcoSystem system ) {
         this.system = system;
+        
+        if(system.getRestaurantdirectory()==null){
+            
+            
+            system.setRestaurantdirectory(restaurantlist);
+        }
         this.restaurantlist=system.getRestaurantdirectory();
         initComponents();
     }
@@ -85,9 +92,11 @@ public class RestaurantJPanel extends javax.swing.JPanel {
                             .addComponent(btnSubmit))
                         .addContainerGap(246, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblManagerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(lblManagerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(101, 101, 101))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,27 +126,42 @@ public class RestaurantJPanel extends javax.swing.JPanel {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
         
-        Restaurant res = system.getEmployeeDirectory().iterateEmployees(MainJFrame.txtUsernameMain.getText()).getRestaurant();
+        Restaurant res = system.getRestaurantdirectory().RetrieveRestaurant(MainJFrame.txtUsernameMain.getText());
         if(res==null){
+            if(txtRestAdd.getText().isEmpty() || txtRestName.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "Fields left blank!");
+                return;
+            }
             Restaurant rest = new Restaurant();
-            system.getEmployeeDirectory().iterateEmployees(MainJFrame.txtUsernameMain.getText()).setRestaurant(rest);
+            rest.setManager(MainJFrame.txtUsernameMain.getText());
+            system.getRestaurantdirectory().getRestaurantlist().add(rest);
         
-            Restaurant restaurant = system.getEmployeeDirectory().iterateEmployees(MainJFrame.txtUsernameMain.getText()).getRestaurant();
+            Restaurant restaurant = system.getRestaurantdirectory().RetrieveRestaurant(MainJFrame.txtUsernameMain.getText());
             restaurant.setName(txtRestName.getText());
             restaurant.setAddress(txtRestAdd.getText());
+            //system.getRestaurantdirectory().getRestaurantlist().add(restaurant);
+            
             String name = system.getEmployeeDirectory().iterateEmployees(MainJFrame.txtUsernameMain.getText()).getName();
             String restname = txtRestName.getText();
             lblManagerName.setText(name+" You are now the manager of " +restname);
+            
             
         }
         else{
             
-            Restaurant restaurant = system.getEmployeeDirectory().iterateEmployees(MainJFrame.txtUsernameMain.getText()).getRestaurant();
+            
+            if(txtRestAdd.getText().isEmpty() || txtRestName.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "Fields left blank!");
+                return;
+            }
+            
+            Restaurant restaurant = system.getRestaurantdirectory().RetrieveRestaurant(MainJFrame.txtUsernameMain.getText());
             restaurant.setName(txtRestName.getText());
             restaurant.setAddress(txtRestAdd.getText());
             String name = system.getEmployeeDirectory().iterateEmployees(MainJFrame.txtUsernameMain.getText()).getName();
             String restname = txtRestName.getText();
             lblManagerName.setText(name+" You are now the manager of " +restname);
+            JOptionPane.showMessageDialog(this, "Restaurant name and address updated!");
             
         }
         

@@ -52,6 +52,20 @@ public class CustomerDirectory {
          return false;
     }
     
+    public Customer RetrieveCustomer(String id){
+        
+        for(Customer cust: customerlist){
+            
+            if(id.equals(cust.id)){
+                
+                return cust;
+            }
+        }
+        return null;
+        
+        
+    }
+    
     
     
 }

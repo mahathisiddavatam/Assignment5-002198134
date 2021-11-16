@@ -4,71 +4,104 @@
  */
 package Business.WorkQueue;
 
-import Business.UserAccount.UserAccount;
-import java.util.Date;
+import Business.Customer.Customer;
+import Business.DeliveryMan.DeliveryMan;
+import Business.Restaurant.Restaurant;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
  * @author raunak
  */
-public abstract class WorkRequest {
+public class WorkRequest {
 
-    private String message;
-    private UserAccount sender;
-    private UserAccount receiver;
-    private String status;
-    private Date requestDate;
-    private Date resolveDate;
+    int orderid;
+    Customer customer;
+    Restaurant restaurant;
+    DeliveryMan deliveryman;
+    String comment;
+    Boolean accept;
+    Boolean deliver;
+    ArrayList<String> food;
     
     public WorkRequest(){
-        requestDate = new Date();
+        
+        food = new ArrayList<>();
+        
+        
     }
 
-    public String getMessage() {
-        return message;
+    public int getOrderid() {
+        return orderid;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setOrderid() {
+        
+        Random rand = new Random();
+        int id = rand.nextInt(1234);
+        this.orderid = id;
     }
 
-    public UserAccount getSender() {
-        return sender;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setSender(UserAccount sender) {
-        this.sender = sender;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public UserAccount getReceiver() {
-        return receiver;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setReceiver(UserAccount receiver) {
-        this.receiver = receiver;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
-    public String getStatus() {
-        return status;
+    public DeliveryMan getDeliveryman() {
+        return deliveryman;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setDeliveryman(DeliveryMan deliveryman) {
+        this.deliveryman = deliveryman;
     }
 
-    public Date getRequestDate() {
-        return requestDate;
+    public String getComment() {
+        return comment;
     }
 
-    public void setRequestDate(Date requestDate) {
-        this.requestDate = requestDate;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    public Date getResolveDate() {
-        return resolveDate;
+    public Boolean getAccept() {
+        return accept;
     }
 
-    public void setResolveDate(Date resolveDate) {
-        this.resolveDate = resolveDate;
+    public void setAccept(Boolean accept) {
+        this.accept = accept;
     }
+
+    public Boolean getDeliver() {
+        return deliver;
+    }
+
+    public void setDeliver(Boolean deliver) {
+        this.deliver = deliver;
+    }
+
+    public ArrayList<String> getFood() {
+        return food;
+    }
+
+    public void setFood(ArrayList<String> food) {
+        this.food = food;
+    }
+    
+    
+    
+    
+    
+    
 }

@@ -5,12 +5,15 @@
 package userinterface.CustomerRole;
 
 import Business.EcoSystem;
+import Business.Restaurant.Menu;
+import Business.Restaurant.Restaurant;
 
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
-import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.MainJFrame;
 
 /**
  *
@@ -21,22 +24,23 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
 
     private UserAccount userAccount;
+    
+    private EcoSystem system;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
-    public CustomerAreaJPanel(JPanel userProcessContainer, UserAccount account) {
+    public CustomerAreaJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
       
-        this.userAccount = account;
+        //this.userAccount = account;
         //valueLabel.setText(enterprise.getName());
-        populateRequestTable();
+        this.system = system;
+        populateRestaurantTable();
     }
     
-    public void populateRequestTable(){
-        
-    }
+    
 
     
     /**
@@ -48,123 +52,637 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tblOrder = new javax.swing.JTable();
+        btnRemove = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        txtComment = new javax.swing.JTextArea();
+        btnConfirm = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        lblCustomername = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        workRequestJTable = new javax.swing.JTable();
-        requestTestJButton = new javax.swing.JButton();
-        refreshTestJButton = new javax.swing.JButton();
-        enterpriseLabel = new javax.swing.JLabel();
-        valueLabel = new javax.swing.JLabel();
+        tblRestaurant = new javax.swing.JTable();
+        btnSelectRest = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblSpecials = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblDessert = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblMainCourse = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblBeverages = new javax.swing.JTable();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblStarters = new javax.swing.JTable();
+        btnAdd = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtOrderID = new javax.swing.JTextField();
 
-        workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
+        tblOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Message", "Receiver", "Status", "Result"
+                "Order"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(workRequestJTable);
-        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
-            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
-        }
+        jScrollPane7.setViewportView(tblOrder);
 
-        requestTestJButton.setText("Request Test");
-        requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
+        btnRemove.setText("Remove");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                requestTestJButtonActionPerformed(evt);
+                btnRemoveActionPerformed(evt);
             }
         });
 
-        refreshTestJButton.setText("Refresh");
-        refreshTestJButton.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setText("Comment:");
+
+        txtComment.setColumns(20);
+        txtComment.setRows(5);
+        jScrollPane8.setViewportView(txtComment);
+
+        btnConfirm.setText("Confirm Order");
+        btnConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshTestJButtonActionPerformed(evt);
+                btnConfirmActionPerformed(evt);
             }
         });
 
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3))
+                    .addComponent(btnRemove))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(813, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRemove)
+                    .addComponent(btnConfirm))
+                .addContainerGap(279, Short.MAX_VALUE))
+        );
 
-        valueLabel.setText("<value>");
+        jTabbedPane1.addTab("Review Order", jPanel2);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Welcome");
+
+        lblCustomername.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        tblRestaurant.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Restaurant name"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblRestaurant);
+
+        btnSelectRest.setText("Select Restaurant");
+        btnSelectRest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectRestActionPerformed(evt);
+            }
+        });
+
+        tblSpecials.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Specials"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tblSpecials);
+
+        tblDessert.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Dessert"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(tblDessert);
+
+        tblMainCourse.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Main Course"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblMainCourse);
+
+        tblBeverages.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Beverages"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblBeverages);
+
+        tblStarters.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Starters"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(tblStarters);
+
+        btnAdd.setText("Add to Order");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setText("Menu");
+
+        jToggleButton1.setText("Click");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Click to generate OrderID. Your OrderID is.");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSelectRest)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblCustomername, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jToggleButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)))
+                        .addGap(10, 10, 10)
+                        .addComponent(txtOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnAdd)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(469, 469, 469)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblCustomername, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jToggleButton1)
+                            .addComponent(jLabel4)
+                            .addComponent(txtOrderID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnSelectRest)
+                                    .addComponent(btnAdd)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Order", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(179, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(165, 165, 165))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(requestTestJButton)
-                        .addGap(86, 86, 86))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(refreshTestJButton)
-                .addGap(103, 103, 103))
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(refreshTestJButton)
-                        .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(requestTestJButton)
-                .addContainerGap(202, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
+    public void populateOrder(String order,DefaultTableModel model){
         
         
         
-    }//GEN-LAST:event_requestTestJButtonActionPerformed
+        
+            
+            Object[] row = new Object[1];
+            row[0]= order;
+            model.insertRow(0, row);
+                
+            
+            
+            
+        
+        
+        
+    }
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        
+        int id = Integer.parseInt(txtOrderID.getText());
+        WorkRequest order = system.getWorkQueue().GetOrder(id);
+        
+        DefaultTableModel modelOrder = (DefaultTableModel) tblOrder.getModel();
+        modelOrder.setRowCount(0);
+        
+        DefaultTableModel modelStarter = (DefaultTableModel)tblStarters.getModel();
+        int selectedIndex = tblStarters.getSelectedRow();
+        
+         
+        if(selectedIndex!=-1){
+            
+            String starter = modelStarter.getValueAt(selectedIndex, 0).toString();
+            order.getFood().add(starter);
+            populateOrder(starter, modelOrder);
+            
+            
+            
+        }
+        
+        
+        DefaultTableModel modelmc = (DefaultTableModel)tblMainCourse.getModel();
+        int selectedIndex1 = tblMainCourse.getSelectedRow();
+        
+        if(selectedIndex1!=-1){
+            
+            String mc = modelmc.getValueAt(selectedIndex1, 0).toString();
+            order.getFood().add(mc);
+            populateOrder(mc, modelOrder);
+            
+            
+            
+        }
+        
+        DefaultTableModel modelbeverage = (DefaultTableModel)tblBeverages.getModel();
+        int selectedIndex2 = tblBeverages.getSelectedRow();
+        
+        if(selectedIndex2!=-1){
+            
+            String bev = modelbeverage.getValueAt(selectedIndex2, 0).toString();
+            order.getFood().add(bev);
+            populateOrder(bev, modelOrder);
+            
+            
+            
+        }
+        
+        DefaultTableModel modelsp = (DefaultTableModel)tblSpecials.getModel();
+        int selectedIndex3 = tblSpecials.getSelectedRow();
+        
+        if(selectedIndex3!=-1){
+            
+            String sp = modelsp.getValueAt(selectedIndex3, 0).toString();
+            order.getFood().add(sp);
+            populateOrder(sp, modelOrder);
+            
+            
+            
+        }
+        
+        DefaultTableModel modelds = (DefaultTableModel)tblDessert.getModel();
+        int selectedIndex4 = tblDessert.getSelectedRow();
+        
+        if(selectedIndex4!=-1){
+            
+            String des = modelds.getValueAt(selectedIndex4, 0).toString();
+            order.getFood().add(des);
+            populateOrder(des, modelOrder);
+            
+            
+        }
+        
+        
+        
+       
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
-
-        populateRequestTable();
+    public void populateMenus(Menu menu){
         
-    }//GEN-LAST:event_refreshTestJButtonActionPerformed
+        DefaultTableModel modelSpecials = (DefaultTableModel) tblSpecials.getModel();
+        modelSpecials.setRowCount(0);
+        
+        
+        
+        
+        for(String special: menu.getSpecials()){
+            
+            Object[] row = new Object[1];
+            row[0]= special;
+            
+            modelSpecials.insertRow(0, row); //To change body of generated methods, choose Tools | Templates.
+        }
+        
+        DefaultTableModel modelStarters = (DefaultTableModel) tblStarters.getModel();
+        modelStarters.setRowCount(0);
+        
+        for(String starter: menu.getStarters()){
+            
+            Object[] row = new Object[1];
+            row[0]= starter;
+            
+            modelStarters.insertRow(0, row); //To change body of generated methods, choose Tools | Templates.
+        }
+        
+        DefaultTableModel modelMainCourse = (DefaultTableModel) tblMainCourse.getModel();
+        modelMainCourse.setRowCount(0);
+        
+        for(String main: menu.getMaincourse()){
+            
+            Object[] row = new Object[1];
+            row[0]= main;
+            
+            modelMainCourse.insertRow(0, row); //To change body of generated methods, choose Tools | Templates.
+        }
+        
+        DefaultTableModel modelBeverages = (DefaultTableModel) tblBeverages.getModel();
+        modelBeverages.setRowCount(0);
+        
+        for(String bev: menu.getBeverages()){
+            
+            Object[] row = new Object[1];
+            row[0]= bev;
+            
+            modelBeverages.insertRow(0, row); //To change body of generated methods, choose Tools | Templates.
+        }
+        
+        DefaultTableModel modelDessert = (DefaultTableModel) tblDessert.getModel();
+        modelDessert.setRowCount(0);
+        
+        for(String dessert: menu.getDessert()){
+            
+            Object[] row = new Object[1];
+            row[0]= dessert;
+            
+            modelDessert.insertRow(0, row); //To change body of generated methods, choose Tools | Templates.
+        }
+        
+        
+    }
+    private void btnSelectRestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectRestActionPerformed
+        // TODO add your handling code here:
+        
+        DefaultTableModel modelRest = (DefaultTableModel)tblRestaurant.getModel();
+        int selectedIndex = tblRestaurant.getSelectedRow();
+        if(selectedIndex!=-1){
+            
+            String rest = modelRest.getValueAt(selectedIndex, 0).toString();
+            Restaurant res = system.getRestaurantdirectory().AcquireRestaurant(rest);
+            populateMenus(res.getMenu());
+            system.getWorkQueue().GetOrder(Integer.parseInt(txtOrderID.getText())).setRestaurant(res);
+            
+            
+            
+            
+        }
+        
+    }//GEN-LAST:event_btnSelectRestActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        WorkRequest order = new WorkRequest();
+        order.setCustomer(system.getCustomerdirectory().RetrieveCustomer(MainJFrame.txtUsernameMain.getText()));
+        order.setOrderid();
+        
+        system.getWorkQueue().getWorkRequestList().add(order);
+        txtOrderID.setText(String.valueOf(order.getOrderid()));
+        JOptionPane.showMessageDialog(this, "You can now start ordering!");
+        
+        
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        // TODO add your handling code here:
+        
+        DefaultTableModel modelOrder = (DefaultTableModel)tblOrder.getModel();
+        int selectedIndex = tblOrder.getSelectedRow();
+        if(selectedIndex!=-1){
+            
+            String order = modelOrder.getValueAt(selectedIndex, 0).toString();
+            system.getWorkQueue().GetOrder(Integer.parseInt(txtOrderID.getText())).getFood().remove(order);
+            modelOrder.removeRow(selectedIndex);
+            
+            
+            
+        }
+    }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
+        // TODO add your handling code here:
+        system.getWorkQueue().GetOrder(Integer.parseInt(txtOrderID.getText())).setComment(txtComment.getText());
+        JOptionPane.showMessageDialog(this, "You have succesfully ordered!");
+        
+    }//GEN-LAST:event_btnConfirmActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnConfirm;
+    private javax.swing.JButton btnRemove;
+    private javax.swing.JButton btnSelectRest;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton refreshTestJButton;
-    private javax.swing.JButton requestTestJButton;
-    private javax.swing.JLabel valueLabel;
-    private javax.swing.JTable workRequestJTable;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel lblCustomername;
+    private javax.swing.JTable tblBeverages;
+    private javax.swing.JTable tblDessert;
+    private javax.swing.JTable tblMainCourse;
+    private javax.swing.JTable tblOrder;
+    private javax.swing.JTable tblRestaurant;
+    private javax.swing.JTable tblSpecials;
+    private javax.swing.JTable tblStarters;
+    private javax.swing.JTextArea txtComment;
+    private javax.swing.JTextField txtOrderID;
     // End of variables declaration//GEN-END:variables
+
+    private void populateRestaurantTable() {
+         //To change body of generated methods, choose Tools | Templates.
+         DefaultTableModel model = (DefaultTableModel) tblRestaurant.getModel();
+         model.setRowCount(0);
+         
+         
+        
+         for(Restaurant rest: system.getRestaurantdirectory().getRestaurantlist()){
+            
+            Object[] row = new Object[1];
+            row[0]= rest.getName();
+            model.insertRow(0, row);
+                
+            
+            
+            
+        }
+         
+    }
+    
+    
 }
