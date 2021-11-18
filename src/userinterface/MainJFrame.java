@@ -55,7 +55,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         loginJLabel = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
-        btnDeleteAll = new javax.swing.JButton();
         container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,13 +83,6 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnDeleteAll.setText("Delete everything");
-        btnDeleteAll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteAllActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -104,9 +96,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtUsernameMain, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnDeleteAll, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE))
+                            .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
                             .addGap(26, 26, 26)
                             .addComponent(loginJLabel)))
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -129,9 +119,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btnLogout)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loginJLabel)
-                .addGap(64, 64, 64)
-                .addComponent(btnDeleteAll)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(jPanel1);
@@ -150,6 +138,11 @@ public class MainJFrame extends javax.swing.JFrame {
         
         String username = txtUsernameMain.getText();
         String password = txtPassword.getText();
+        
+        //system.getWorkQueue().GetOrder(264).setRestaurant(system.getRestaurantdirectory().RetrieveRestaurant("mahathimanager"));
+        //system.getWorkQueue().GetOrder(264).setAccept(null);
+             
+        
         
         UserAccount ua = system.getUserAccountDirectory().authenticateUser(username, password);
         
@@ -200,12 +193,6 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameMainActionPerformed
 
-    private void btnDeleteAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAllActionPerformed
-        // TODO add your handling code here:
-        
-      
-    }//GEN-LAST:event_btnDeleteAllActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -241,7 +228,6 @@ public class MainJFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDeleteAll;
     private javax.swing.JButton btnLogin;
     public javax.swing.JButton btnLogout;
     private javax.swing.JPanel container;

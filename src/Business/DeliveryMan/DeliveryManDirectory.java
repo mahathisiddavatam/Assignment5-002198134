@@ -40,6 +40,17 @@ public class DeliveryManDirectory {
         return deli;
     }
     
+    public DeliveryMan RetrieveDeliveryMan(String id){
+        
+        for(DeliveryMan deli: deliverymanlist){
+            
+            if(id.equals(deli.id)){
+                return deli;
+            }
+        }
+        return null;
+    }
+    
     public boolean deleteDeliveryMan(String id){
          for(DeliveryMan del: deliverymanlist){
              if(id.equals(del.getId())){

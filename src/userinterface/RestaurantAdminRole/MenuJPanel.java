@@ -358,6 +358,7 @@ public class MenuJPanel extends javax.swing.JPanel {
             
             String starter = modelStarter.getValueAt(selectedIndex, 0).toString();
             menu.getStarters().remove(starter);
+            modelStarter.removeRow(selectedIndex);
             
             
         }
@@ -370,6 +371,7 @@ public class MenuJPanel extends javax.swing.JPanel {
             
             String mc = modelmc.getValueAt(selectedIndex1, 0).toString();
             menu.getMaincourse().remove(mc);
+            modelmc.removeRow(selectedIndex1);
             
             
             
@@ -382,6 +384,7 @@ public class MenuJPanel extends javax.swing.JPanel {
             
             String bev = modelbeverage.getValueAt(selectedIndex2, 0).toString();
             menu.getBeverages().remove(bev);
+            modelbeverage.removeRow(selectedIndex2);
             
             
             
@@ -394,6 +397,7 @@ public class MenuJPanel extends javax.swing.JPanel {
             
             String sp = modelsp.getValueAt(selectedIndex3, 0).toString();
             menu.getSpecials().remove(sp);
+            modelsp.removeRow(selectedIndex3);
             
             
             
@@ -406,6 +410,7 @@ public class MenuJPanel extends javax.swing.JPanel {
             
             String des = modelds.getValueAt(selectedIndex4, 0).toString();
             menu.getDessert().remove(des);
+            modelds.removeRow(selectedIndex4);
             
             
             

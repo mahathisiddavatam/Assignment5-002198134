@@ -8,6 +8,7 @@ import Business.Customer.Customer;
 import Business.DeliveryMan.DeliveryMan;
 import Business.Restaurant.Restaurant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -24,6 +25,24 @@ public class WorkRequest {
     Boolean accept;
     Boolean deliver;
     ArrayList<String> food;
+    Date date;
+    String review;
+
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
     
     public WorkRequest(){
         

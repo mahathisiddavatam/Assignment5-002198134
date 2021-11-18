@@ -5,8 +5,14 @@
  */
 package userinterface.RestaurantAdminRole;
 
+import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
+import Business.Restaurant.Restaurant;
 import Business.WorkQueue.WorkQueue;
+import Business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import userinterface.MainJFrame;
 
 /**
  *
@@ -26,6 +32,10 @@ public class OrderJPanel extends javax.swing.JPanel {
         orderlist = system.getWorkQueue();
         
         initComponents();
+        populateOrderTable();
+        populateDeliveryTable();
+        populatePrevious();
+        
     }
 
     /**
@@ -37,19 +47,356 @@ public class OrderJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblDelivery = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblOrder = new javax.swing.JTable();
+        btnAccept = new javax.swing.JButton();
+        btnAssignDelivery = new javax.swing.JButton();
+        btnReject = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        tblPrevious = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+
+        tblDelivery.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "DeliveryMan", "Current Address"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblDelivery);
+
+        tblOrder.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Order ID", "Customer Address"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tblOrder);
+
+        btnAccept.setText("Accept Order");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
+
+        btnAssignDelivery.setText("Assign DeliveryMan");
+        btnAssignDelivery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssignDeliveryActionPerformed(evt);
+            }
+        });
+
+        btnReject.setText("Reject Order");
+        btnReject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRejectActionPerformed(evt);
+            }
+        });
+
+        tblPrevious.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Order ID", "Ordered on.", "Order Status", "Delivery Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane9.setViewportView(tblPrevious);
+
+        jLabel1.setText("Orders so far:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jSeparator1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAccept)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAssignDelivery)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnReject)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAccept)
+                    .addComponent(btnAssignDelivery))
+                .addGap(18, 18, 18)
+                .addComponent(btnReject)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        // TODO add your handling code here:
+        
+        DefaultTableModel modelOrder = (DefaultTableModel)tblOrder.getModel();
+        int selectedIndex = tblOrder.getSelectedRow();
+        if(selectedIndex!=-1){
+            
+            String order = modelOrder.getValueAt(selectedIndex, 0).toString();
+            WorkRequest ord = system.getWorkQueue().GetOrder(Integer.parseInt(order));
+            ord.setAccept(true);
+            //modelOrder.removeRow(selectedIndex);
+            populatePrevious();
+            JOptionPane.showMessageDialog(this, "Order Accepted. Please assign deliveryman!");
+           
+            
+            
+            
+        }
+        
+        
+    }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
+        // TODO add your handling code here:
+        
+        DefaultTableModel modelOrder = (DefaultTableModel)tblOrder.getModel();
+        int selectedIndex = tblOrder.getSelectedRow();
+        if(selectedIndex!=-1){
+            
+            String order = modelOrder.getValueAt(selectedIndex, 0).toString();
+            WorkRequest ord = system.getWorkQueue().GetOrder(Integer.parseInt(order));
+            ord.setAccept(false);
+            modelOrder.removeRow(selectedIndex);
+            populatePrevious();
+            JOptionPane.showMessageDialog(this, "Order Rejected!");
+           
+            
+            
+            
+        }
+        
+        
+    }//GEN-LAST:event_btnRejectActionPerformed
+
+    private void btnAssignDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignDeliveryActionPerformed
+        // TODO add your handling code here:
+        
+        DefaultTableModel modelOrder = (DefaultTableModel)tblOrder.getModel();
+        int selectedIndex = tblOrder.getSelectedRow();
+        String orderID=null;
+        String delId = null;
+        if(selectedIndex!=-1){
+            
+            orderID = modelOrder.getValueAt(selectedIndex, 0).toString();
+            
+            
+            
+        }
+        
+        
+        DefaultTableModel modelDel = (DefaultTableModel)tblDelivery.getModel();
+        int selectedIndex1 = tblDelivery.getSelectedRow();
+        
+        if(selectedIndex1!=-1){
+            
+            delId = modelDel.getValueAt(selectedIndex1, 0).toString();
+            
+            
+            
+            
+        }
+        WorkRequest order = system.getWorkQueue().GetOrder(Integer.parseInt(orderID));
+        order.setDeliveryman(system.getDeliverymandirectory().RetrieveDeliveryMan(delId));
+        modelOrder.removeRow(selectedIndex);
+        
+        JOptionPane.showMessageDialog(this, "DeliveryMan Assigned!");
+        
+        
+        
+        
+    }//GEN-LAST:event_btnAssignDeliveryActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAccept;
+    private javax.swing.JButton btnAssignDelivery;
+    private javax.swing.JButton btnReject;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable tblDelivery;
+    private javax.swing.JTable tblOrder;
+    private javax.swing.JTable tblPrevious;
     // End of variables declaration//GEN-END:variables
+
+    private void populateOrderTable() {
+         //To change body of generated methods, choose Tools | Templates.
+         
+         DefaultTableModel model = (DefaultTableModel) tblOrder.getModel();
+         model.setRowCount(0);
+         
+         
+        
+         for(WorkRequest or: system.getWorkQueue().getWorkRequestList()){
+             
+             if(or.getRestaurant().getManager().equals(MainJFrame.txtUsernameMain.getText())){
+             
+             if(or.getAccept()==null){
+                 Object[] row = new Object[2];
+                 row[0]= or.getOrderid();
+                 row[1]= or.getCustomer().getAddress();
+                 model.insertRow(0, row);
+
+                 
+             }
+            
+            
+                
+            
+            
+            
+        }
+    }
+    }
+
+    private void populateDeliveryTable() {
+        
+        DefaultTableModel model = (DefaultTableModel) tblDelivery.getModel();
+         model.setRowCount(0);
+         
+         
+        
+         for(DeliveryMan del: system.getDeliverymandirectory().getDeliverymanlist()){
+            
+            Object[] row = new Object[2];
+            row[0]= del.getId();
+            row[1]= del.getAddress();
+            model.insertRow(0, row);
+         
+         
+         
+    }
+    }
+
+    private void populatePrevious() {
+       DefaultTableModel model = (DefaultTableModel) tblPrevious.getModel();
+        model.setRowCount(0);
+        
+        
+         
+         
+        
+         for(WorkRequest or: system.getWorkQueue().getWorkRequestList()){
+             
+            /**if(or.getRestaurant()==null){
+                
+                or.setRestaurant(system.getRestaurantdirectory().RetrieveRestaurant("mahathimanager"));
+            } 
+            * **/
+             
+            if(or.getRestaurant().getManager().equals(MainJFrame.txtUsernameMain.getText())){ 
+            
+            Object[] row = new Object[4];
+            row[0]= or.getOrderid();
+            row[1]= or.getDate();
+            
+            if(or.getAccept()==null){
+                row[2]="Waiting";
+            }
+            
+            if(or.getAccept()!=null){
+            if(or.getAccept()==true){
+                row[2]="Accepted";
+            }
+            }
+            if(or.getAccept()!=null){
+            if(or.getAccept()==false){
+                row[2]="Rejected";
+            }
+            }
+            
+            if(or.getDeliver()!=null){
+            if(or.getDeliver()==true){
+                
+                row[3]="Delivered";
+             
+             
+             
+         }
+            }
+            if(or.getDeliver()==null){
+                
+                row[3]="Waiting";
+                
+            }
+            model.insertRow(0, row);
+                
+            
+            
+            
+        }  //To change body of generated methods, choose Tools | Templates.
+    }
+    }
 }
